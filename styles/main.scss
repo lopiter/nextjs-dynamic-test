@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+
+body {
+  // @apply p-1
+}
+
+@tailwind utilities;
+
+@import "index" ;
