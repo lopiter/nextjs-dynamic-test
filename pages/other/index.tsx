@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import {DynamicComponentsLoader} from "@/components/loader" 
 
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 
@@ -10,16 +11,16 @@ function getRandomInt(max) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
-        props: { 'theme': getRandomInt(3) + 1 },
+        props: { 'type': getRandomInt(3) + 1 },
     }
 }
 
-function Home({ theme }) {
-    const BodyDefault = dynamic(() => import(`components/${theme}/b`));
+function Home({ type }) {
+    let Body = DynamicComponentsLoader(type,'b', false) 
     return (
         <div>
             other page..
-            <BodyDefault></BodyDefault>
+            <Body></Body>
         </div>
     )
 }
